@@ -1,0 +1,129 @@
+<div class="dashboard-container">
+  <div *ngIf="loading" class="loading-container">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div *ngIf="!loading && metrics" class="dashboard-content">
+    <div class="dashboard-header">
+      <h1>Performance Dashboard</h1>
+      <p class="subtitle">Overview of employee performance metrics</p>
+    </div>
+
+    <div class="kpi-cards">
+      <mat-card class="kpi-card">
+        <mat-card-content>
+          <div class="kpi-icon" style="background-color: #e3f2fd;">
+            <mat-icon style="color: #1976d2;">trending_up</mat-icon>
+          </div>
+          <div class="kpi-details">
+            <p class="kpi-label">Average Score</p>
+            <h2 class="kpi-value">{{ metrics.averageScore.toFixed(2) }}</h2>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="kpi-card">
+        <mat-card-content>
+          <div class="kpi-icon" style="background-color: #e8f5e9;">
+            <mat-icon style="color: #388e3c;">people</mat-icon>
+          </div>
+          <div class="kpi-details">
+            <p class="kpi-label">Total Employees</p>
+            <h2 class="kpi-value">{{ metrics.totalEmployees }}</h2>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="kpi-card">
+        <mat-card-content>
+          <div class="kpi-icon" style="background-color: #fff3e0;">
+            <mat-icon style="color: #f57c00;">star</mat-icon>
+          </div>
+          <div class="kpi-details">
+            <p class="kpi-label">Top Performers</p>
+            <h2 class="kpi-value">{{ metrics.topPerformers }}</h2>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="kpi-card">
+        <mat-card-content>
+          <div class="kpi-icon" style="background-color: #fce4ec;">
+            <mat-icon style="color: #c2185b;">warning</mat-icon>
+          </div>
+          <div class="kpi-details">
+            <p class="kpi-label">Needs Improvement</p>
+            <h2 class="kpi-value">{{ metrics.needsImprovement }}</h2>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="charts-row">
+      <mat-card class="chart-card">
+        <mat-card-content>
+          <div class="chart-container">
+            <canvas #departmentChart></canvas>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="chart-card">
+        <mat-card-content>
+          <div class="chart-container">
+            <canvas #trendChart></canvas>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <mat-card class="top-performers-card">
+      <mat-card-header>
+        <mat-card-title>
+          <mat-icon>emoji_events</mat-icon>
+          Top Performers
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <table mat-table [dataSource]="topPerformers" class="performers-table">
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>Employee</th>
+            <td mat-cell *matCellDef="let employee">
+              <div class="employee-info">
+                <img [src]="employee.profileImage" [alt]="getFullName(employee)" class="employee-avatar">
+                <div>
+                  <p class="employee-name">{{ getFullName(employee) }}</p>
+                  <p class="employee-position">{{ employee.position }}</p>
+                </div>
+              </div>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="department">
+            <th mat-header-cell *matHeaderCellDef>Department</th>
+            <td mat-cell *matCellDef="let employee">{{ employee.department }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="score">
+            <th mat-header-cell *matHeaderCellDef>Score</th>
+            <td mat-cell *matCellDef="let employee">
+              <span class="score-badge">{{ employee.performanceScore.toFixed(1) }}</span>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let employee">
+              <button mat-icon-button [routerLink]="['/employees', employee.id]" color="primary">
+                <mat-icon>visibility</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
