@@ -1,4 +1,51 @@
+<<<<<<< HEAD
 <app-navbar></app-navbar>
 <main class="content">
   <router-outlet></router-outlet>
 </main>
+=======
+<div class="app-container">
+  <mat-toolbar *ngIf="!isLoginPage && currentUser" color="primary" class="app-toolbar">
+    <div class="toolbar-content">
+      <div class="logo-section">
+        <mat-icon class="logo-icon">assessment</mat-icon>
+        <span class="app-title">Performance Management</span>
+      </div>
+
+      <nav class="nav-links">
+        <button
+          *ngFor="let item of navigationItems"
+          mat-button
+          [routerLink]="item.route"
+          [class.active]="isActive(item.route)">
+          <mat-icon>{{ item.icon }}</mat-icon>
+          {{ item.label }}
+        </button>
+      </nav>
+
+      <div class="user-section">
+        <button mat-button [matMenuTriggerFor]="userMenu" class="user-button">
+          <mat-icon>account_circle</mat-icon>
+          <span class="user-name">{{ currentUser?.name }}</span>
+          <mat-icon>arrow_drop_down</mat-icon>
+        </button>
+        <mat-menu #userMenu="matMenu">
+          <div class="user-menu-header">
+            <p class="user-menu-name">{{ currentUser?.name }}</p>
+            <p class="user-menu-role">{{ currentUser?.role }}</p>
+          </div>
+          <mat-divider></mat-divider>
+          <button mat-menu-item (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            <span>Logout</span>
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+  </mat-toolbar>
+
+  <main class="main-content" [class.with-toolbar]="!isLoginPage && currentUser">
+    <router-outlet></router-outlet>
+  </main>
+</div>
+>>>>>>> 6143766f5d839bcae2d6f2cf6f0d0b688d2e5ad6

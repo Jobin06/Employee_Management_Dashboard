@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="review-container">
   <div *ngIf="loading" class="loading-container">
     <mat-spinner></mat-spinner>
@@ -158,3 +159,165 @@
     </mat-card>
   </div>
 </div>
+=======
+<div class="review-container">
+  <div *ngIf="loading" class="loading-container">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div *ngIf="!loading && employee" class="review-content">
+    <div class="header-section">
+      <button mat-button (click)="cancel()">
+        <mat-icon>arrow_back</mat-icon>
+        Back
+      </button>
+    </div>
+
+    <mat-card class="review-card">
+      <mat-card-header>
+        <div class="review-header">
+          <div class="employee-info">
+            <img [src]="employee.profileImage" [alt]="getFullName()" class="employee-avatar">
+            <div>
+              <h1>Performance Review</h1>
+              <p class="employee-name">{{ getFullName() }}</p>
+              <p class="employee-position">{{ employee.position }} - {{ employee.department }}</p>
+            </div>
+          </div>
+        </div>
+      </mat-card-header>
+
+      <mat-card-content>
+        <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
+          <div class="form-section">
+            <h3>Review Period</h3>
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Review Period</mat-label>
+              <input
+                matInput
+                formControlName="period"
+                placeholder="e.g., Q4 2024"
+                required>
+              <mat-error *ngIf="reviewForm.get('period')?.hasError('required')">
+                Period is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="form-section">
+            <h3>Performance Ratings</h3>
+            <p class="section-description">Rate each category from 1 (Needs Improvement) to 5 (Excellent)</p>
+
+            <div class="rating-fields">
+              <div class="rating-field">
+                <label>Technical Skills: {{ reviewForm.get('technicalSkills')?.value.toFixed(1) }}</label>
+                <mat-slider min="1" max="5" step="0.5" discrete showTickMarks class="full-width">
+                  <input matSliderThumb formControlName="technicalSkills">
+                </mat-slider>
+              </div>
+
+              <div class="rating-field">
+                <label>Communication: {{ reviewForm.get('communication')?.value.toFixed(1) }}</label>
+                <mat-slider min="1" max="5" step="0.5" discrete showTickMarks class="full-width">
+                  <input matSliderThumb formControlName="communication">
+                </mat-slider>
+              </div>
+
+              <div class="rating-field">
+                <label>Teamwork: {{ reviewForm.get('teamwork')?.value.toFixed(1) }}</label>
+                <mat-slider min="1" max="5" step="0.5" discrete showTickMarks class="full-width">
+                  <input matSliderThumb formControlName="teamwork">
+                </mat-slider>
+              </div>
+
+              <div class="rating-field">
+                <label>Leadership: {{ reviewForm.get('leadership')?.value.toFixed(1) }}</label>
+                <mat-slider min="1" max="5" step="0.5" discrete showTickMarks class="full-width">
+                  <input matSliderThumb formControlName="leadership">
+                </mat-slider>
+              </div>
+
+              <div class="rating-field">
+                <label>Productivity: {{ reviewForm.get('productivity')?.value.toFixed(1) }}</label>
+                <mat-slider min="1" max="5" step="0.5" discrete showTickMarks class="full-width">
+                  <input matSliderThumb formControlName="productivity">
+                </mat-slider>
+              </div>
+            </div>
+
+            <div class="overall-rating">
+              <mat-icon>star</mat-icon>
+              <span>Overall Rating: {{ calculateOverallRating().toFixed(2) }} / 5.0</span>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3>Comments</h3>
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Performance Comments</mat-label>
+              <textarea
+                matInput
+                formControlName="comments"
+                rows="6"
+                placeholder="Provide detailed feedback on performance, achievements, and areas for improvement..."
+                required></textarea>
+              <mat-error *ngIf="reviewForm.get('comments')?.hasError('required')">
+                Comments are required
+              </mat-error>
+              <mat-error *ngIf="reviewForm.get('comments')?.hasError('minlength')">
+                Comments must be at least 20 characters
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="form-section">
+            <h3>Goals for Next Period</h3>
+            <p class="section-description">Set specific, measurable goals for the next review period</p>
+
+            <div class="goal-input">
+              <mat-form-field appearance="outline" class="goal-field">
+                <mat-label>Add Goal</mat-label>
+                <input
+                  matInput
+                  [(ngModel)]="newGoal"
+                  [ngModelOptions]="{standalone: true}"
+                  (keyup.enter)="addGoal()"
+                  placeholder="Enter a goal">
+              </mat-form-field>
+              <button mat-raised-button type="button" (click)="addGoal()" color="primary">
+                <mat-icon>add</mat-icon>
+                Add
+              </button>
+            </div>
+
+            <div *ngIf="goals.length > 0" class="goals-list">
+              <mat-chip-set>
+                <mat-chip *ngFor="let goal of goals.controls; let i = index" [removable]="true" (removed)="removeGoal(i)">
+                  {{ goal.value }}
+                  <button matChipRemove>
+                    <mat-icon>cancel</mat-icon>
+                  </button>
+                </mat-chip>
+              </mat-chip-set>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button mat-button type="button" (click)="cancel()" [disabled]="submitting">
+              Cancel
+            </button>
+            <button
+              mat-raised-button
+              color="primary"
+              type="submit"
+              [disabled]="reviewForm.invalid || submitting">
+              <mat-spinner *ngIf="submitting" diameter="20"></mat-spinner>
+              <span *ngIf="!submitting">Submit Review</span>
+            </button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+>>>>>>> 6143766f5d839bcae2d6f2cf6f0d0b688d2e5ad6

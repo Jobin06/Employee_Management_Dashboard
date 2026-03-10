@@ -1,5 +1,157 @@
+<<<<<<< HEAD
 .content {
   padding: 24px;
   max-width: 1400px;
   margin: 0 auto;
 }
+=======
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.toolbar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  font-size: 32px;
+  width: 32px;
+  height: 32px;
+}
+
+.app-title {
+  font-size: 20px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.nav-links {
+  display: flex;
+  gap: 8px;
+  flex: 1;
+  justify-content: center;
+}
+
+.nav-links button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 0 20px;
+  height: 48px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.nav-links button.active {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.nav-links button mat-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+.user-section {
+  display: flex;
+  align-items: center;
+}
+
+.user-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  padding: 0 12px;
+  height: 48px;
+}
+
+.user-name {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.user-menu-header {
+  padding: 16px;
+  background-color: #f5f5f5;
+}
+
+.user-menu-name {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 4px;
+  color: #333;
+}
+
+.user-menu-role {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+}
+
+.main-content {
+  flex: 1;
+  background-color: #f5f5f5;
+}
+
+.main-content.with-toolbar {
+  min-height: calc(100vh - 64px);
+}
+
+@media (max-width: 768px) {
+  .toolbar-content {
+    padding: 0 8px;
+  }
+
+  .app-title {
+    font-size: 16px;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .user-name {
+    display: none;
+  }
+
+  .user-button {
+    padding: 0 8px;
+  }
+}
+
+@media (max-width: 960px) {
+  .nav-links button span {
+    display: none;
+  }
+
+  .nav-links button {
+    padding: 0 12px;
+  }
+}
+>>>>>>> 6143766f5d839bcae2d6f2cf6f0d0b688d2e5ad6
