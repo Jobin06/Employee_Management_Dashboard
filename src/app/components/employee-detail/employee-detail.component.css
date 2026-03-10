@@ -1,0 +1,115 @@
+.detail-container {
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+    min-height: 400px;
+}
+
+.back-btn {
+    margin-bottom: 20px;
+}
+
+.loading-shade {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+}
+
+.not-found {
+    text-align: center;
+    padding: 40px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.not-found mat-icon {
+    font-size: 64px;
+    height: 64px;
+    width: 64px;
+    margin-bottom: 16px;
+}
+
+.employee-card {
+    padding: 16px;
+    border-radius: 12px;
+}
+
+.employee-avatar {
+    background-color: #e3f2fd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: #1565c0;
+}
+
+.employee-avatar mat-icon {
+    transform: scale(1.5);
+}
+
+mat-card-header {
+    margin-bottom: 16px;
+}
+
+mat-card-title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+mat-card-subtitle {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+mat-divider {
+    margin: 16px 0;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 8px 16px 24px 16px;
+}
+
+.info-group {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.info-group mat-icon {
+    margin-top: 4px;
+}
+
+.info-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.label {
+    font-size: 0.85rem;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.value {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #333;
+}
+
+.salary-val {
+    font-size: 1.25rem;
+}
+
+.card-actions {
+    display: flex;
+    justify-content: flex-end;
+    padding: 16px 8px 8px 8px;
+}

@@ -1,0 +1,70 @@
+<div class="login-container">
+  <mat-card class="login-card">
+    <mat-card-header>
+      <div class="header-content">
+        <mat-icon class="logo-icon">assessment</mat-icon>
+        <mat-card-title>Performance Management System</mat-card-title>
+        <mat-card-subtitle>Sign in to your account</mat-card-subtitle>
+      </div>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Username</mat-label>
+          <input
+            matInput
+            type="text"
+            name="username"
+            [(ngModel)]="username"
+            required
+            [disabled]="loading"
+            autocomplete="username">
+          <mat-icon matPrefix>person</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            type="password"
+            name="password"
+            [(ngModel)]="password"
+            required
+            [disabled]="loading"
+            autocomplete="current-password">
+          <mat-icon matPrefix>lock</mat-icon>
+        </mat-form-field>
+
+        <div *ngIf="error" class="error-message">
+          <mat-icon>error_outline</mat-icon>
+          {{ error }}
+        </div>
+
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          class="full-width login-button"
+          [disabled]="loading || !loginForm.valid">
+          <mat-spinner *ngIf="loading" diameter="20"></mat-spinner>
+          <span *ngIf="!loading">Sign In</span>
+        </button>
+      </form>
+
+      <div class="demo-accounts">
+        <p class="demo-title">Demo Accounts:</p>
+        <div class="demo-buttons">
+          <button
+            *ngFor="let account of demoAccounts"
+            mat-stroked-button
+            type="button"
+            (click)="fillDemoCredentials(account)"
+            [disabled]="loading">
+            {{ account.role }}
+          </button>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

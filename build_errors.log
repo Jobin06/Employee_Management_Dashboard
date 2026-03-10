@@ -1,0 +1,13 @@
+﻿[33mΓ¥»[39m Building...
+[32mΓ£ö[39m Building...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m        [2m | [22m [1mRaw size[22m[2m | [22m[1mEstimated transfer size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m         [2m | [22m[36m928.79 kB[39m[2m | [22m              [36m195.79 kB[39m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m       [2m | [22m[36m104.44 kB[39m[2m | [22m                [36m7.96 kB[39m
+[32mpolyfills.js[39m       [2m | [22m[2mpolyfills[22m    [2m | [22m [36m35.68 kB[39m[2m | [22m               [36m11.57 kB[39m
+
+[1m [22m                  [2m | [22m[1mInitial total[22m[2m | [22m  [1m1.07 MB[22m[2m | [22m              [1m215.31 kB[22m
+
+Application bundle generation complete. [8.162 seconds] - 2026-03-10T04:00:44.658Z
+
+Output location: J:\Code\landT\Employee Management Dashboard\dist\demo
+

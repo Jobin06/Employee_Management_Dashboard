@@ -1,0 +1,188 @@
+.review-container {
+  padding: 24px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+.header-section {
+  margin-bottom: 24px;
+}
+
+.review-card {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.review-header {
+  width: 100%;
+  padding: 20px 0;
+}
+
+.employee-info {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.employee-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.employee-info h1 {
+  font-size: 28px;
+  font-weight: 600;
+  margin: 0 0 8px;
+  color: #1a237e;
+}
+
+.employee-name {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 4px;
+  color: #333;
+}
+
+.employee-position {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+}
+
+.form-section {
+  margin-bottom: 32px;
+}
+
+.form-section h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 8px;
+  color: #333;
+}
+
+.section-description {
+  font-size: 14px;
+  color: #666;
+  margin: 0 0 20px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.rating-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.rating-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.rating-field label {
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+}
+
+.overall-rating {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.overall-rating mat-icon {
+  color: #ffd700;
+}
+
+.goal-input {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.goal-field {
+  flex: 1;
+}
+
+.goals-list {
+  padding: 16px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+}
+
+.goals-list mat-chip-set {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  padding-top: 24px;
+  border-top: 1px solid #e0e0e0;
+  margin-top: 32px;
+}
+
+.form-actions button {
+  min-width: 120px;
+  height: 48px;
+}
+
+mat-spinner {
+  display: inline-block;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .review-container {
+    padding: 16px;
+  }
+
+  .employee-info {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .employee-info h1 {
+    font-size: 24px;
+  }
+
+  .goal-input {
+    flex-direction: column;
+  }
+
+  .goal-input button {
+    width: 100%;
+  }
+
+  .form-actions {
+    flex-direction: column-reverse;
+  }
+
+  .form-actions button {
+    width: 100%;
+  }
+}

@@ -1,0 +1,180 @@
+<div class="employee-detail-container">
+  <div *ngIf="loading" class="loading-container">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div *ngIf="error && !loading" class="error-container">
+    <mat-icon>error_outline</mat-icon>
+    <h2>{{ error }}</h2>
+    <button mat-raised-button color="primary" (click)="goBack()">
+      Back to Employees
+    </button>
+  </div>
+
+  <div *ngIf="!loading && !error && employee" class="detail-content">
+    <div class="header-actions">
+      <button mat-button (click)="goBack()">
+        <mat-icon>arrow_back</mat-icon>
+        Back to Employees
+      </button>
+    </div>
+
+    <div class="profile-section">
+      <mat-card class="profile-card">
+        <mat-card-content>
+          <div class="profile-header">
+            <img [src]="employee.profileImage" [alt]="getFullName()" class="profile-image">
+            <div class="profile-info">
+              <h1>{{ getFullName() }}</h1>
+              <p class="position">{{ employee.position }}</p>
+              <mat-chip [color]="getStatusColor(employee.status)" selected>
+                {{ employee.status }}
+              </mat-chip>
+            </div>
+          </div>
+
+          <mat-divider></mat-divider>
+
+          <div class="info-grid">
+            <div class="info-item">
+              <mat-icon>email</mat-icon>
+              <div>
+                <p class="info-label">Email</p>
+                <p class="info-value">{{ employee.email }}</p>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <mat-icon>business</mat-icon>
+              <div>
+                <p class="info-label">Department</p>
+                <p class="info-value">{{ employee.department }}</p>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <mat-icon>person</mat-icon>
+              <div>
+                <p class="info-label">Manager</p>
+                <p class="info-value">{{ employee.manager }}</p>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <mat-icon>event</mat-icon>
+              <div>
+                <p class="info-label">Hire Date</p>
+                <p class="info-value">{{ employee.hireDate | date:'longDate' }}</p>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="performance-summary-card">
+        <mat-card-header>
+          <mat-card-title>
+            <mat-icon>analytics</mat-icon>
+            Performance Summary
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="performance-score-display">
+            <div class="score-circle">
+              <span class="score-number">{{ employee.performanceScore.toFixed(1) }}</span>
+              <span class="score-max">/5.0</span>
+            </div>
+            <div class="score-rating">
+              <p class="rating-label">Overall Rating</p>
+              <mat-chip [color]="employee.performanceScore >= 4.5 ? 'primary' : 'accent'" selected>
+                {{ employee.performanceScore | performanceRating }}
+              </mat-chip>
+            </div>
+          </div>
+
+          <button
+            mat-raised-button
+            color="primary"
+            [routerLink]="['/review', employee.id]"
+            class="review-button">
+            <mat-icon>rate_review</mat-icon>
+            Add Performance Review
+          </button>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <mat-card class="reviews-card">
+      <mat-card-header>
+        <mat-card-title>
+          <mat-icon>history</mat-icon>
+          Performance Review History
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div *ngIf="reviews.length === 0" class="no-reviews">
+          <mat-icon>assignment</mat-icon>
+          <p>No performance reviews yet</p>
+        </div>
+
+        <div *ngIf="reviews.length > 0" class="reviews-list">
+          <mat-card *ngFor="let review of reviews" class="review-item">
+            <mat-card-content>
+              <div class="review-header">
+                <div>
+                  <h3>{{ review.period }}</h3>
+                  <p class="review-meta">
+                    By {{ review.reviewerName }} on {{ review.reviewDate | date:'mediumDate' }}
+                  </p>
+                </div>
+                <div class="review-score">
+                  <span class="score-badge">{{ review.overallRating.toFixed(1) }}</span>
+                </div>
+              </div>
+
+              <div class="skills-grid">
+                <div class="skill-item">
+                  <span class="skill-label">Technical Skills</span>
+                  <span class="skill-value">{{ review.technicalSkills.toFixed(1) }}</span>
+                </div>
+                <div class="skill-item">
+                  <span class="skill-label">Communication</span>
+                  <span class="skill-value">{{ review.communication.toFixed(1) }}</span>
+                </div>
+                <div class="skill-item">
+                  <span class="skill-label">Teamwork</span>
+                  <span class="skill-value">{{ review.teamwork.toFixed(1) }}</span>
+                </div>
+                <div class="skill-item">
+                  <span class="skill-label">Leadership</span>
+                  <span class="skill-value">{{ review.leadership.toFixed(1) }}</span>
+                </div>
+                <div class="skill-item">
+                  <span class="skill-label">Productivity</span>
+                  <span class="skill-value">{{ review.productivity.toFixed(1) }}</span>
+                </div>
+              </div>
+
+              <mat-divider></mat-divider>
+
+              <div class="review-comments">
+                <h4>Comments</h4>
+                <p>{{ review.comments }}</p>
+              </div>
+
+              <div *ngIf="review.goals && review.goals.length > 0" class="review-goals">
+                <h4>Goals</h4>
+                <mat-list>
+                  <mat-list-item *ngFor="let goal of review.goals">
+                    <mat-icon matListItemIcon>check_circle_outline</mat-icon>
+                    <span matListItemTitle>{{ goal }}</span>
+                  </mat-list-item>
+                </mat-list>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

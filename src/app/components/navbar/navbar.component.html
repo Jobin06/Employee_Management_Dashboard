@@ -1,0 +1,18 @@
+<mat-toolbar color="primary" class="navbar mat-elevation-z4">
+    <div class="logo-container" routerLink="/employees">
+        <mat-icon>dashboard</mat-icon>
+        <span>EmpDashboard</span>
+    </div>
+    <span class="spacer"></span>
+    <div class="nav-links">
+        <button mat-button routerLink="/employees" routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{exact: true}">
+            <mat-icon>people</mat-icon>
+            Employees
+        </button>
+        <button mat-raised-button color="accent" routerLink="/add-employee">
+            <mat-icon>person_add</mat-icon>
+            Add Employee
+        </button>
+    </div>
+</mat-toolbar>

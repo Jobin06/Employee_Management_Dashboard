@@ -1,0 +1,85 @@
+<div class="form-container">
+    <button mat-button class="back-btn" (click)="goBack()" type="button">
+        <mat-icon>arrow_back</mat-icon> Cancel
+    </button>
+
+    <mat-card class="form-card mat-elevation-z4">
+        <div class="loading-shade" *ngIf="isLoading">
+            <mat-spinner diameter="50"></mat-spinner>
+        </div>
+
+        <mat-card-header>
+            <mat-card-title>
+                {{ isEditMode ? 'Edit Employee Data' : 'Add New Employee' }}
+            </mat-card-title>
+            <mat-card-subtitle>
+                {{ isEditMode ? 'Update the details for this employee.' : 'Enter details to register a new employee.' }}
+            </mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content class="card-content">
+            <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" class="employee-form" novalidate>
+
+                <div class="form-row">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Full Name</mat-label>
+                        <input matInput formControlName="name" placeholder="John Doe">
+                        <mat-error *ngIf="f['name'].errors?.['required']">Name is required</mat-error>
+                        <mat-error *ngIf="f['name'].errors?.['minlength']">Name must be at least 2
+                            characters</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Email Address</mat-label>
+                        <input matInput formControlName="email" type="email" placeholder="john.doe@example.com">
+                        <mat-icon matSuffix>email</mat-icon>
+                        <mat-error *ngIf="f['email'].errors?.['required']">Email is required</mat-error>
+                        <mat-error *ngIf="f['email'].errors?.['email']">Please enter a valid email address</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="form-row">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Job Role</mat-label>
+                        <input matInput formControlName="role" placeholder="e.g. Frontend Developer">
+                        <mat-error *ngIf="f['role'].errors?.['required']">Role is required</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Department</mat-label>
+                        <mat-select formControlName="department">
+                            <mat-option *ngFor="let dept of departments" [value]="dept">{{dept}}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="f['department'].errors?.['required']">Department is required</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="form-row">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Annual Salary (USD)</mat-label>
+                        <input matInput formControlName="salary" type="number" placeholder="60000">
+                        <span matTextPrefix>$&nbsp;</span>
+                        <mat-error *ngIf="f['salary'].errors?.['required']">Salary is required</mat-error>
+                        <mat-error *ngIf="f['salary'].errors?.['min']">Salary cannot be negative</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Join Date</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="joinDate">
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        <mat-error *ngIf="f['joinDate'].errors?.['required']">Join date is required</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="form-actions">
+                    <button mat-button type="button" (click)="employeeForm.reset()">Clear</button>
+                    <button mat-raised-button color="primary" type="submit" [disabled]="isLoading">
+                        {{ isEditMode ? 'Update Details' : 'Save Employee' }}
+                    </button>
+                </div>
+
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>
